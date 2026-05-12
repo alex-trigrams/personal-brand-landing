@@ -102,62 +102,63 @@ function AvatarSlot({ size = 96, breathing = true }) {
   );
 }
 
-// ── Email form ────────────────────────────────────────────────────────────
-function EmailForm({ magnetEnabled, onRed = false }) {
-  const [email, setEmail] = useState('');
-  const [state, setState] = useState('idle');
-
-  const submit = (e) => {
-    e.preventDefault();
-    if (!email || !email.includes('@')) return;
-    setState('submitted');
-  };
-
-  if (state === 'submitted') {
-    return (
-      <div className={`flex items-center gap-3 text-[14.5px] font-medium ${onRed ? 'text-white' : 'text-ink'}`}>
-        <span className={`inline-flex items-center justify-center w-5 h-5 rounded-full ${onRed ? 'bg-white text-red-brand' : 'bg-red-brand text-white'}`}>
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-            <path d="M2.5 6.5 5 9l4.5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </span>
-        <span>You're in. First note coming soon.</span>
-      </div>
-    );
-  }
-
+// ── Email form (MailerLite embed) ─────────────────────────────────────────
+function MailerLiteForm({ onRed = false }) {
   return (
-    <form onSubmit={submit} className="flex flex-col sm:flex-row gap-2.5 w-full">
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="you@somewhere.com"
-        required
-        aria-label="Email address"
-        className={`email-input ${onRed ? 'on-red' : ''} font-body flex-1 min-w-0`}
-      />
-      <button
-        type="submit"
-        className={[
-          'shrink-0 inline-flex items-center justify-center gap-1.5',
-          'px-5 py-[13px] rounded-[12px] text-[14.5px] font-semibold',
-          'transition-all duration-200',
-          onRed
-            ? 'bg-white text-red-brand hover:bg-red-tint'
-            : 'bg-ink text-white hover:bg-red-brand',
-        ].join(' ')}
-      >
-        <Magnet enabled={magnetEnabled} strength={0.35} range={60}>
-          <span className="inline-flex items-center gap-1.5">
-            Subscribe
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M2 7h10m0 0L8 3m4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </span>
-        </Magnet>
-      </button>
-    </form>
+    <div
+      id="mlb2-41169706"
+      className={`ml-form-embedContainer ml-subscribe-form ml-subscribe-form-41169706${onRed ? ' on-red-card' : ''}`}
+    >
+      <div className="ml-form-align-center">
+        <div className="ml-form-embedWrapper embedForm">
+          <div className="ml-form-embedBody ml-form-embedBodyDefault row-form">
+            <div className="ml-form-embedContent">
+              <h4>Get the in&#8209;the&#8209;know notes.</h4>
+              <p>Here, just trying to share my very limited wisdom and life experience.</p>
+            </div>
+            <form
+              className="ml-block-form"
+              action="https://assets.mailerlite.com/jsonp/2288085/forms/187223424254347000/subscribe"
+              data-code=""
+              method="post"
+              target="_blank"
+            >
+              <div className="ml-form-formContent">
+                <div className="ml-form-fieldRow ml-last-item">
+                  <div className="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                    <input
+                      aria-label="email"
+                      aria-required="true"
+                      type="email"
+                      className="form-control"
+                      data-inputmask=""
+                      name="fields[email]"
+                      placeholder="Email"
+                      autoComplete="email"
+                    />
+                  </div>
+                </div>
+              </div>
+              <input type="hidden" name="ml-submit" value="1" />
+              <div className="ml-form-embedSubmit">
+                <button type="submit" className="primary">Subscribe</button>
+                <button disabled={true} style={{display: 'none'}} type="button" className="loading">
+                  <div className="ml-form-embedSubmitLoad"></div>
+                  <span className="sr-only">Loading...</span>
+                </button>
+              </div>
+              <input type="hidden" name="anticsrf" value="true" />
+            </form>
+          </div>
+          <div className="ml-form-successBody row-success" style={{display: 'none'}}>
+            <div className="ml-form-successContent">
+              <h4>Thank you!</h4>
+              <p>You have successfully joined our subscriber list.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -222,6 +223,22 @@ function App() {
   const today = useMemo(() => new Date().toLocaleDateString('en-AU', {
     timeZone: 'Australia/Perth', weekday: 'short', day: 'numeric', month: 'short',
   }).toUpperCase(), []);
+
+  useEffect(() => {
+    window.ml_webform_success_41169706 = function() {
+      var form = document.querySelector('.ml-subscribe-form-41169706 .row-form');
+      var success = document.querySelector('.ml-subscribe-form-41169706 .row-success');
+      if (form) form.style.display = 'none';
+      if (success) success.style.display = '';
+    };
+    var s = document.createElement('script');
+    s.src = 'https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b';
+    s.type = 'text/javascript';
+    s.onload = function() {
+      fetch('https://assets.mailerlite.com/jsonp/2288085/forms/187223424254347000/takel');
+    };
+    document.body.appendChild(s);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col items-center">
@@ -315,7 +332,7 @@ function App() {
                     {BLURB}
                   </p>
                 </div>
-                <EmailForm magnetEnabled={t.cursorMagnet} onRed={true} />
+                <MailerLiteForm onRed={true} />
               </div>
             </div>
           ) : (
@@ -330,7 +347,7 @@ function App() {
                     {BLURB}
                   </p>
                 </div>
-                <EmailForm magnetEnabled={t.cursorMagnet} />
+                <MailerLiteForm />
               </div>
             </div>
           )}

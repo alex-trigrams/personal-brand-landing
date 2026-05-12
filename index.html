@@ -216,6 +216,135 @@
 
   .tnum { font-variant-numeric: tabular-nums; }
 </style>
+
+<!-- MailerLite embed styles -->
+<style type="text/css">@import url("https://assets.mlcdn.com/fonts.css?version=1778073");</style>
+<style type="text/css">
+.ml-form-embedSubmitLoad{display:inline-block;width:20px;height:20px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.ml-form-embedSubmitLoad:after{content:" ";display:block;width:11px;height:11px;margin:1px;border-radius:50%;border:4px solid #fff;border-color:#fff #fff #fff transparent;animation:ml-form-embedSubmitLoad 1.2s linear infinite}
+@keyframes ml-form-embedSubmitLoad{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+#mlb2-41169706.ml-form-embedContainer{box-sizing:border-box;display:table;margin:0 auto;position:static;width:100%!important}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper{background-color:#f6f6f6;border-width:0;border-color:transparent;border-radius:4px;border-style:solid;box-sizing:border-box;display:inline-block!important;margin:0;padding:0;position:relative}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper.embedForm{max-width:400px;width:100%}
+#mlb2-41169706.ml-form-embedContainer .ml-form-align-center{text-align:center}
+#mlb2-41169706.ml-form-embedContainer .ml-form-align-default{display:table-cell!important;vertical-align:middle!important;text-align:center!important}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody,
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody{padding:20px 20px 0 20px}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent,
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent{text-align:left;margin:0 0 20px 0}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent h4,
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent h4{color:#000;font-family:'Open Sans',Arial,Helvetica,sans-serif;font-size:30px;font-weight:400;margin:0 0 10px 0;text-align:left;word-break:break-word}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p,
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p{color:#000;font-family:'Open Sans',Arial,Helvetica,sans-serif;font-size:14px;font-weight:400;line-height:20px;margin:0 0 10px 0;text-align:left}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody form{margin:0;width:100%}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-formContent{margin:0 0 20px 0;width:100%}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow{margin:0 0 10px 0;width:100%}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow.ml-last-item{margin:0}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input{background-color:#fff!important;color:#333!important;border-color:#ccc;border-radius:4px!important;border-style:solid!important;border-width:1px!important;font-family:'Open Sans',Arial,Helvetica,sans-serif;font-size:14px!important;height:auto;line-height:21px!important;margin:0;padding:10px!important;width:100%!important;box-sizing:border-box!important;max-width:100%!important}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input::placeholder{color:#333}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit{margin:0 0 20px 0;float:left;width:100%}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button{background-color:#c71a1a!important;border:none!important;border-radius:4px!important;box-shadow:none!important;color:#fff!important;cursor:pointer;font-family:'Open Sans',Arial,Helvetica,sans-serif!important;font-size:14px!important;font-weight:700!important;line-height:21px!important;height:auto;padding:10px!important;width:100%!important;box-sizing:border-box!important}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button.loading{display:none}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button:hover{background-color:#8f1313!important}
+.ml-error input,.ml-error textarea,.ml-error select{border-color:red!important}
+.ml-error .label-description,.ml-error .label-description p,.ml-error label:first-child{color:#f00!important}
+</style>
+
+<!-- Design system overrides for MailerLite form (selectors match ML specificity depth to win !important cascade) -->
+<style>
+/* Strip container chrome */
+#mlb2-41169706.ml-form-embedContainer { display: block !important; margin: 0 !important; }
+#mlb2-41169706.ml-form-embedContainer .ml-form-align-center { display: block !important; text-align: left !important; }
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper.embedForm {
+  background-color: transparent !important; border: none !important;
+  border-radius: 0 !important; display: block !important; max-width: 100% !important; width: 100% !important;
+}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody,
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody { padding: 0 !important; }
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent { display: none !important; }
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-formContent { margin-bottom: 10px !important; }
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow { margin: 0 !important; }
+
+/* Input — full selector depth beats ML's (1,4,1) specificity */
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input[type="email"] {
+  background: rgba(255,255,255,0.94) !important;
+  border: 1px solid #EBE7E0 !important;
+  border-radius: 12px !important;
+  color: #1A1A1A !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  padding: 13px 16px !important;
+  transition: border-color 200ms, box-shadow 200ms !important;
+}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input[type="email"]:focus {
+  border-color: #1A1A1A !important;
+  box-shadow: 0 0 0 4px rgba(26,26,26,0.06) !important;
+}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input[type="email"]::placeholder,
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input[type="email"]::-webkit-input-placeholder,
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input[type="email"]::-moz-placeholder {
+  color: #9E9E9E !important; font-weight: 400 !important;
+}
+
+/* Button */
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit {
+  margin: 0 !important; float: none !important; width: 100% !important;
+}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button.primary {
+  background-color: #1A1A1A !important;
+  border-radius: 12px !important;
+  color: #FFFFFF !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  padding: 13px 20px !important;
+  width: 100% !important;
+  transition: background-color 200ms !important;
+}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button.primary:hover {
+  background-color: #D92B1B !important;
+}
+
+/* Success state */
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent h4 {
+  color: #1A1A1A !important; font-family: 'Inter', sans-serif !important;
+  font-size: 14.5px !important; font-weight: 500 !important; margin: 0 0 4px !important;
+}
+#mlb2-41169706.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p {
+  color: #5C5C5C !important; font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important; margin: 0 !important;
+}
+
+/* Red card variant — extra class raises specificity above default rules */
+#mlb2-41169706.ml-form-embedContainer.on-red-card .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input[type="email"] {
+  background: rgba(255,255,255,0.10) !important;
+  border-color: rgba(255,255,255,0.22) !important;
+  color: #FFFFFF !important;
+}
+#mlb2-41169706.ml-form-embedContainer.on-red-card .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input[type="email"]::placeholder,
+#mlb2-41169706.ml-form-embedContainer.on-red-card .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input[type="email"]::-webkit-input-placeholder,
+#mlb2-41169706.ml-form-embedContainer.on-red-card .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input[type="email"]::-moz-placeholder {
+  color: rgba(255,255,255,0.55) !important;
+}
+#mlb2-41169706.ml-form-embedContainer.on-red-card .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input[type="email"]:focus {
+  background: rgba(255,255,255,0.18) !important;
+  border-color: rgba(255,255,255,0.5) !important;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.08) !important;
+}
+#mlb2-41169706.ml-form-embedContainer.on-red-card .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button.primary {
+  background-color: #FFFFFF !important;
+  color: #D92B1B !important;
+}
+#mlb2-41169706.ml-form-embedContainer.on-red-card .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button.primary:hover {
+  background-color: #FBE5E2 !important;
+}
+#mlb2-41169706.ml-form-embedContainer.on-red-card .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent h4 { color: #FFFFFF !important; }
+#mlb2-41169706.ml-form-embedContainer.on-red-card .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p { color: rgba(255,255,255,0.8) !important; }
+</style>
 </head>
 <body>
 <div id="root"></div>
