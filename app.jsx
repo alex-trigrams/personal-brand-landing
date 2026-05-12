@@ -80,7 +80,7 @@ function Magnet({ children, enabled, strength = 0.28, range = 70, className = ""
 }
 
 // ── Avatar slot — drop assets/avatar.gif (or .png/.mp4) to fill
-const AVATAR_SRC = null; // e.g. "assets/avatar.gif"
+const AVATAR_SRC = "assets/logo-animated.gif";
 function AvatarSlot({ size = 96, breathing = true }) {
   const [errored, setErrored] = useState(false);
   const showImg = !!AVATAR_SRC && !errored;
