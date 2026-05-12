@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexander Oliver</title>
+<meta name="description" content="Alexander Oliver — AI strategist building AI-powered marketing systems for small business founders in WA.">
+
+<link rel="icon" type="image/png" href="assets/Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          red:      { brand: '#D92B1B', pressed: '#B8200F', tint: '#FBE5E2' },
+          sand:     '#F5EFE4',
+          ink:      { DEFAULT: '#1A1A1A', mid: '#5C5C5C', soft: '#9E9E9E', faint: '#D6D6D6' },
+          hairline: '#EBE7E0',
+          chip:     '#EFE9DE',
+          success:  '#2E7D5B',
+        },
+        fontFamily: {
+          display: ['Archivo', 'sans-serif'],
+          body:    ['Inter', 'sans-serif'],
+          mono:    ['"JetBrains Mono"', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html, body {
+    background: #FFFFFF;
+    color: #1A1A1A;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection { background: #FBE5E2; color: #D92B1B; }
+
+  /* Fine dot grid with radial vignette */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      radial-gradient(rgba(26,26,26,0.055) 1px, transparent 1.2px);
+    background-size: 18px 18px;
+    background-position: 0 0;
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, #000 55%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, #000 55%, transparent 100%);
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(217,43,27,0.04), transparent 60%),
+      radial-gradient(ellipse 80% 50% at 50% 110%, rgba(245,239,228,0.6), transparent 60%);
+  }
+
+  /* Entrance animations */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .rise   { animation: rise 0.8s cubic-bezier(.2,.7,.2,1) both; }
+  .rise-0 { animation-delay:   0ms; }
+  .rise-1 { animation-delay:  90ms; }
+  .rise-2 { animation-delay: 200ms; }
+  .rise-3 { animation-delay: 320ms; }
+  .rise-4 { animation-delay: 440ms; }
+  .rise-5 { animation-delay: 580ms; }
+  .scaleIn { animation: scaleIn 0.7s cubic-bezier(.2,.7,.2,1) both; }
+
+  /* Cursor / kinetic helpers */
+  .magnet { display: inline-block; will-change: transform;
+            transition: transform 280ms cubic-bezier(.2,.7,.2,1); }
+
+  /* Card surface */
+  .surface {
+    background: #FFFFFF;
+    border: 1px solid #EBE7E0;
+    border-radius: 20px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.6) inset,
+      0 1px 3px rgba(26,20,16,0.04),
+      0 8px 28px -12px rgba(26,20,16,0.08);
+  }
+  .surface-red {
+    background: #D92B1B;
+    color: #FFFFFF;
+    border-radius: 20px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.15) inset,
+      0 8px 28px -8px rgba(217,43,27,0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .surface-red::before {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1.2px);
+    background-size: 14px 14px;
+    opacity: 0.6;
+  }
+
+  /* Email input */
+  .email-input {
+    width: 100%;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid #EBE7E0;
+    border-radius: 12px;
+    padding: 13px 16px;
+    font: 500 15px/1 'Inter', sans-serif;
+    color: #1A1A1A;
+    outline: none;
+    transition: border-color 200ms cubic-bezier(.4,0,.2,1), box-shadow 200ms;
+  }
+  .email-input::placeholder { color: #9E9E9E; font-weight: 400; }
+  .email-input:focus {
+    border-color: #1A1A1A;
+    box-shadow: 0 0 0 4px rgba(26,26,26,0.06);
+  }
+  .email-input.on-red {
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(255,255,255,0.22);
+    color: #FFFFFF;
+  }
+  .email-input.on-red::placeholder { color: rgba(255,255,255,0.55); }
+  .email-input.on-red:focus {
+    background: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.5);
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.08);
+  }
+
+  /* Pill / tag */
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px 7px 12px;
+    background: #FFFFFF;
+    border: 1px solid #EBE7E0;
+    border-radius: 999px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #1A1A1A;
+    transition: transform 220ms cubic-bezier(.2,.7,.2,1),
+                border-color 200ms, box-shadow 200ms, color 200ms;
+  }
+  .pill:hover {
+    transform: translateY(-1.5px);
+    border-color: rgba(26,26,26,0.4);
+    box-shadow: 0 6px 18px -8px rgba(26,20,16,0.18);
+  }
+  .pill:hover .pill-handle { color: #D92B1B; }
+  .pill-handle { color: #9E9E9E; transition: color 200ms; }
+
+  /* Avatar slot */
+  .gif-slot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: linear-gradient(140deg, #F5EFE4 0%, #FFFFFF 100%);
+    border: 1px solid #EBE7E0;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.8) inset,
+      0 6px 22px -10px rgba(26,20,16,0.16);
+  }
+  .gif-slot img, .gif-slot video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .gif-slot-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 2px;
+    background:
+      radial-gradient(rgba(26,26,26,0.07) 1px, transparent 1.2px) 0 0 / 8px 8px,
+      linear-gradient(140deg, #F5EFE4 0%, #FFFFFF 100%);
+    color: #9E9E9E;
+    font: 600 9.5px/1 'JetBrains Mono', monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* Ring breathing on the avatar slot */
+  @keyframes ring {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(217,43,27,0.0),
+                            0 1px 0 rgba(255,255,255,0.8) inset,
+                            0 6px 22px -10px rgba(26,20,16,0.16); }
+    50%      { box-shadow: 0 0 0 6px rgba(217,43,27,0.06),
+                            0 1px 0 rgba(255,255,255,0.8) inset,
+                            0 6px 22px -10px rgba(26,20,16,0.16); }
+  }
+  .gif-slot.breathing { animation: ring 3.6s ease-in-out infinite; }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .rise, .scaleIn { animation: none; opacity: 1; transform: none; }
+    .magnet { transition: none; }
+    .gif-slot.breathing { animation: none; }
+  }
+
+  #root { position: relative; z-index: 1; }
+
+  .tnum { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
