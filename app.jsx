@@ -102,63 +102,72 @@ function AvatarSlot({ size = 96, breathing = true }) {
   );
 }
 
-// ── Email form (MailerLite embed) ─────────────────────────────────────────
+// ── Email form ────────────────────────────────────────────────────────────
 function MailerLiteForm({ onRed = false }) {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle');
+  const iframeRef = useRef(null);
+  const submitted = useRef(false);
+
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+    const onLoad = () => {
+      if (submitted.current) {
+        submitted.current = false;
+        setStatus('success');
+      }
+    };
+    iframe.addEventListener('load', onLoad);
+    return () => iframe.removeEventListener('load', onLoad);
+  }, []);
+
+  const handleSubmit = () => {
+    submitted.current = true;
+    setStatus('loading');
+  };
+
+  if (status === 'success') {
+    return (
+      <p className={`text-[14px] font-medium ${onRed ? 'text-white/90' : 'text-ink-mid'}`}>
+        ✓ You're in — check your inbox.
+      </p>
+    );
+  }
+
   return (
-    <div
-      id="mlb2-41169706"
-      className={`ml-form-embedContainer ml-subscribe-form ml-subscribe-form-41169706${onRed ? ' on-red-card' : ''}`}
-    >
-      <div className="ml-form-align-center">
-        <div className="ml-form-embedWrapper embedForm">
-          <div className="ml-form-embedBody ml-form-embedBodyDefault row-form">
-            <div className="ml-form-embedContent">
-              <h4>Get the in&#8209;the&#8209;know notes.</h4>
-              <p>Here, just trying to share my very limited wisdom and life experience.</p>
-            </div>
-            <form
-              className="ml-block-form"
-              action="https://assets.mailerlite.com/jsonp/2288085/forms/187223424254347000/subscribe"
-              data-code=""
-              method="post"
-              target="_blank"
-            >
-              <div className="ml-form-formContent">
-                <div className="ml-form-fieldRow ml-last-item">
-                  <div className="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-                    <input
-                      aria-label="email"
-                      aria-required="true"
-                      type="email"
-                      className="form-control"
-                      data-inputmask=""
-                      name="fields[email]"
-                      placeholder="Email"
-                      autoComplete="email"
-                    />
-                  </div>
-                </div>
-              </div>
-              <input type="hidden" name="ml-submit" value="1" />
-              <div className="ml-form-embedSubmit">
-                <button type="submit" className="primary">Subscribe</button>
-                <button disabled={true} style={{display: 'none'}} type="button" className="loading">
-                  <div className="ml-form-embedSubmitLoad"></div>
-                  <span className="sr-only">Loading...</span>
-                </button>
-              </div>
-              <input type="hidden" name="anticsrf" value="true" />
-            </form>
-          </div>
-          <div className="ml-form-successBody row-success" style={{display: 'none'}}>
-            <div className="ml-form-successContent">
-              <h4>Thank you!</h4>
-              <p>You have successfully joined our subscriber list.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      <iframe ref={iframeRef} name="ml-subscribe-frame" style={{display:'none'}} title="subscribe" aria-hidden="true" />
+      <form
+        action="https://assets.mailerlite.com/jsonp/2288085/forms/187223424254347000/subscribe"
+        method="post"
+        target="ml-subscribe-frame"
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-2.5"
+      >
+        <input type="hidden" name="ml-submit" value="1" />
+        <input type="hidden" name="anticsrf" value="true" />
+        <input
+          aria-label="Email address"
+          aria-required="true"
+          type="email"
+          name="fields[email]"
+          className={`email-input${onRed ? ' on-red' : ''}`}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Your email"
+          autoComplete="email"
+          required
+        />
+        <button
+          type="submit"
+          className={`btn-subscribe${onRed ? ' on-red' : ''}`}
+          disabled={status === 'loading'}
+        >
+          {status === 'loading' ? 'Subscribing…' : 'Subscribe'}
+        </button>
+      </form>
+    </>
   );
 }
 
@@ -224,21 +233,6 @@ function App() {
     timeZone: 'Australia/Perth', weekday: 'short', day: 'numeric', month: 'short',
   }).toUpperCase(), []);
 
-  useEffect(() => {
-    window.ml_webform_success_41169706 = function() {
-      var form = document.querySelector('.ml-subscribe-form-41169706 .row-form');
-      var success = document.querySelector('.ml-subscribe-form-41169706 .row-success');
-      if (form) form.style.display = 'none';
-      if (success) success.style.display = '';
-    };
-    var s = document.createElement('script');
-    s.src = 'https://groot.mailerlite.com/js/w/webforms.min.js?vb397d78ebaa8a0f631d35384c46d781b';
-    s.type = 'text/javascript';
-    s.onload = function() {
-      fetch('https://assets.mailerlite.com/jsonp/2288085/forms/187223424254347000/takel');
-    };
-    document.body.appendChild(s);
-  }, []);
 
   return (
     <div className="min-h-screen flex flex-col items-center">
@@ -357,8 +351,9 @@ function App() {
         {t.showFreeResource && (
           <section className={`mt-5 ${t.entrance ? 'rise rise-5' : ''}`}>
             <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
+              href="https://drive.google.com/file/d/1qjEqDUifoHwMor0i690hg1Qp9n2PwdQI/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               className="surface flex items-center justify-between gap-3 px-5 py-[18px] hover:border-ink/30 transition-colors group"
               style={{ textDecoration: 'none' }}
             >
